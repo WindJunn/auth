@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>智慧农业大数据</title>
+    <link href="css/style.css" rel="stylesheet"/>
+
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+
+
+    <script type="text/javascript">
+        var app = angular.module("app", []);
+
+        //控制层
+        app.controller('articleController', function ($scope,$sce, articleService) {
+            // $scope.url1="";
+            $scope.findUrls = function () {
+                articleService.geturl().success(
+                    function (response) {
+                        $scope.url1 = response.url;
+                        console.log($scope.url1);
+                        $scope.src1 = $sce.trustAsResourceUrl($scope.url1);
+
+
+                    }
+                );
+            };
+
+
+
+            $scope.find = function () {
+                window.location="https://www.baidu.com/";
+            }
+
+        });
+        //服务层
+        app.service('articleService', function ($http) {
+            this.geturl = function () {
+                return $http.get('data/getUrl');
+            };
+        });
+
+    </script>
+
+</head>
+<body  ng-app="app" ng-controller="articleController" ng-init="findUrls()" class="bgbg">
+
+<div class="header">
+    <h1 class="tit">农业溯源大数据监测平台</h1>
+    <div class="dmenu">
+        <ul>
+            <li class="on" id="tabmenu_10" onclick="setTimeout(&quot;Show_Tab(1,0,4,'','on')&quot;,1)"><a>综合监测</a></li>
+            <li id="tabmenu_11" onclick="setTimeout(&quot;Show_Tab(1,1,4,'','on')&quot;,1)"><a>环境监测</a></li>
+            <li id="tabmenu_12" onclick="setTimeout(&quot;Show_Tab(1,2,4,'','on')&quot;,1)"><a>视频监测</a></li>
+            <li id="tabmenu_13" onclick="setTimeout(&quot;Show_Tab(1,3,4,'','on')&quot;,1)"><a>追溯动态</a></li>
+        </ul>
+    </div>
+</div>
+<div class="MainContainer"  id="tabcontent_10">
+    <iframe src="" scrolling="auto" frameborder="0" ></iframe>
+</div>
+<div class="MainContainer"  style="display: block" id="tabcontent_11">
+    <iframe  ng-src="{{src1}}"
+            scrolling="auto" frameborder="0"></iframe>
+</div>
+<div class="MainContainer" id="tabcontent_12">
+    <iframe src="viods2.html" scrolling="auto" frameborder="0"></iframe>
+</div>
+<div class="MainContainer" id="tabcontent_13">
+    <iframe src="" scrolling="auto" frameborder="0"></iframe>
+</div>
+</body>
+<script src="js/tab.js"></script>
+</html>

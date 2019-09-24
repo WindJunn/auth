@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录</title>
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/systemManage.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript">
+        var app = angular.module("app", []);
+        //控制层
+        app.controller('controller', function ($scope, service) {
+
+            $scope.username = '';
+            $scope.getUserext = function () {
+
+                $scope.user = JSON.parse(localStorage.getItem("user"));
+                $scope.username = $scope.user.username;
+                console.log($scope.user)
+            };
+            $scope.updatePassword = function (password1, password2) {
+                if (password1 != password2) {
+                    alert("密码输入不一致，请检查或重新输入")
+                    return;
+                }
+
+                service.updatePass($scope.username, password2).success(
+                    function (response) {
+
+                    }
+                )
+            }
+
+        });
+        //服务层
+        app.service('service', function ($http) {
+            this.getuserext = function (username) {
+                return $http.get('getuserext?username=' + username);
+            };
+            this.updatePass = function (username, password) {
+                return $http.post('updatePass?username=' + username + '&password=' + password);
+            }
+        });
+    </script>
+</head>
+<body ng-app="app" ng-controller="controller" ng-init="getUserext()">
+<!-- 顶部 -->
+<div class="header">
+    <div class="container">
+        <div class="row">
+            <div class="logos col-md-2">
+                <a href="javascript:;">
+                    <img src="images/login_logo.png" alt/>
+                </a>
+            </div>
+            <div class="logo-title col-md-4">统一身份认证和单点登录平台</div>
+
+            <div class="userinfo col-md-2">
+                <span class="el-dropdown-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="iconfont icon-yonghu"></span>
+                  <span slot="username" class="username">您好，{{user.name}}</span>
+                </span>
+                <ul class="dropdown-menu">
+                    <li><a href="#">退出</a></li>
+                </ul>
+            </div>
+            <div class="times col-md-4 ny-flex">
+                <i class="iconfont icon-shijian"></i>
+                <!-- 定时器 -->
+                <div class="right-currentTime-logOut">
+                    <span class="year fontDigi"></span>
+                    <span class="separator">年</span>
+                    <span class="month fontDigi"></span>
+                    <span class="separator ">月</span>
+                    <span class="day fontDigi"></span>
+                    <span class="separator ">日</span>
+                    <span class="currentDay-week"></span>
+                    <span class="hour fontDigi"></span>
+                    <span class="separator">:</span>
+                    <span class="minute fontDigi"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="row-bg row">
+    <div class="grid-head">
+        <ul class="tab-nav ny-flex">
+            <li class="tab-active"> 业务系统授权</li>
+            <li>修改注册信息</li>
+            <li>修改密码</li>
+            <li>操作说明</li>
+            <li>业务操作员</li>
+        </ul>
+    </div>
+    <!-- 模块 -->
+    <div class="grid-cont">
+        <div class="row cont-box grid-contents" style="display: block">
+            <div class="col-lg-3  col-md-4">
+                <div class="grid-content">
+                    <img src='images/vr.png' alt="">
+                    <p class="info">智慧农业VR质量溯源质量监测中心</p>
+                    <p class="open-xt">
+                        <button type="button" class="btn btn-success" id="system_des">系统说明</button>
+                        <button type="button" class="btn btn-warning">进入系统</button>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="grid-content">
+                    <img src='images/hj.png' alt="">
+                    <p class="info">智慧农业生产坏境监测中心</p>
+                    <p class="open-xt">
+                        <button type="button" class="btn btn-success">系统说明</button>
+                        <button type="button" class="btn btn-warning">进入系统</button>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="grid-content">
+                    <img src='images/td.png' alt="">
+                    <p class="info">智慧农业土壤肥力监测中心</p>
+                    <p class="open-xt">
+                        <button type="button" class="btn btn-success">系统说明</button>
+                        <button type="button" class="btn btn-warning">进入系统</button>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="grid-content">
+                    <img src='images/5G.png' alt="">
+                    <p class="info">物联网（5G）传感器实时数据监测中心</p>
+                    <p class="open-xt">
+                        <button type="button" class="btn btn-success">系统说明</button>
+                        <button type="button" class="btn btn-warning">进入系统</button>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="grid-content">
+                    <img src='images/qx.png' alt="">
+                    <p class="info">智慧农业智慧生产气象站</p>
+                    <p class="open-xt">
+                        <button type="button" class="btn btn-success">系统说明</button>
+                        <button type="button" class="btn btn-warning">进入系统</button>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="grid-content">
+                    <img src='images/sj.png' alt="">
+                    <p class="info">智慧农业大数据综合分析决策系统</p>
+                    <p class="open-xt">
+                        <button type="button" class="btn btn-success">系统说明</button>
+                        <button type="button" class="btn btn-warning">进入系统</button>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="grid-content">
+                    <img src='images/zj.png' alt="">
+                    <p class="info">智慧农业重金属监测</p>
+                    <p class="open-xt">
+                        <button type="button" class="btn btn-success">系统说明</button>
+                        <button type="button" class="btn btn-warning">进入系统</button>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="grid-content">
+                    <img src='images/sc.png' alt="">
+                    <p class="info">生产企业管理系统</p>
+                    <p class="open-xt">
+                        <button type="button" class="btn btn-success">系统说明</button>
+                        <button type="button" class="btn btn-warning">进入系统</button>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <div class="grid-content">
+                    <img src='images/ds.png' alt="">
+                    <p class="info">电子商务销售系统</p>
+                    <p class="open-xt">
+                        <button type="button" class="btn btn-success">系统说明</button>
+                        <button type="button" class="btn btn-warning">进入系统</button>
+                    </p>
+                </div>
+            </div>
+            <!-- 查看系统说明 -->
+            <div class="modal fade" id="desModal" tabindex="-1" role="dialog" aria-labelledby="desModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">系统详细说明</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p class="sys-des">智慧农业
+                                是农业中的智慧经济，或智慧经济形态在农业中的具体表现。智慧农业是智慧经济重要的组成部分；对于发展中国家而言，智慧农业是智慧经济主要的组成部分，是发展中国家消除贫困、实现后发优势、经济发展后来居上、实现赶超战略的主要途径。</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal" id="to_grant">去授权
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 给操作员授权 -->
+            <div class="modal fade" id="toModal" tabindex="-1" role="dialog" aria-labelledby="toModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">请选择以下操作员</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <label for="">
+                                        <input type="checkbox" placeholder="操作员A">
+                                        操作员A
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="">
+                                        <input type="checkbox" placeholder="操作员B">
+                                        操作员B
+                                    </label>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="">
+                                        <input type="checkbox" placeholder="操作员C">
+                                        操作员C
+                                    </label>
+                                </div>
+                                <div class=" col-md-3">
+                                    <label for="">
+                                        <input type="checkbox" placeholder="操作员C">
+                                        操作员C
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal" id="to_grant">确认</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cont-box grid-contents form-contents">
+            <h2>用户信息修改</h2>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="" class="col-sm-4 control-label">手机号</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-4 control-label">真实姓名</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-4 control-label">所在单位</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="col-sm-4 control-label">所在部门</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-xiug btn-block">立即修改</button>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-block btn-link">取消</button>
+                </div>
+            </form>
+        </div>
+        <div class="cont-box grid-contents form-contents">
+            <h2>账号密码修改</h2>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-4 control-label">新密码</label>
+                    <div class="col-sm-8">
+                        <span class="iconfont icon-yanjing_yincang_o form-control-feedback"></span>
+                        <input type="password" ng-model="password1" class="form-control" id="inputPassword2"
+                               placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-4 control-label">确认新密码</label>
+                    <div class="col-sm-8">
+                        <span class="iconfont icon-yanjing_yincang_o form-control-feedback"></span>
+                        <input type="password" ng-model="password2" class="form-control" id="inputPassword3"
+                               placeholder="">
+                    </div>
+                </div>
+                <!--                8-18位，必须包含大小写字母和数字-->
+                <!--<div class="form-group">
+                    <label for="inputPassword3" class="col-sm-4 control-label">验证码</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" id="inputPassword3" placeholder="输入验证码">
+                        <img class="yzm form-control-feedback" src="images/yzm.jpg" alt="">
+                    </div>
+                </div>-->
+                <div class="form-group">
+                    <button type="button" class="btn btn-xiug btn-block" ng-click="updatePassword(password1,password2)">
+                        立即修改
+                    </button>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-block btn-link">取消</button>
+                </div>
+            </form>
+        </div>
+        <div class="cont-box grid-contents">
+
+        </div>
+        <div class="cont-box grid-contents salesman">
+            <p class="add-salesman">
+                <button type="button" class="btn btn-warning" onclick="addSalesman()">添加业务操作员</button>
+            </p>
+            <div class="sales-form">
+                <h2>添加业务操作员信息</h2>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">手机号(登录名)</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="请输入操作员手机号(登录名)">
+                        </div>
+                        <label for="" class="col-sm-2 control-label">操作员姓名</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="请输入操作员姓名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">邮箱</label>
+                        <div class="col-sm-4">
+                            <input type="email" class="form-control" placeholder="请输入操作员邮箱">
+                        </div>
+                        <label for="" class="col-sm-2 control-label">所在部门</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="请输入所在部门">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">账号密码</label>
+                        <div class="col-sm-4">
+                            <input type="password" class="form-control" placeholder="由8-20位数字和字母组成">
+                            <span class="iconfont icon-yanjing_yincang_o form-control-feedback"></span>
+                        </div>
+                        <label for="" class="col-sm-2 control-label">确认密码</label>
+                        <div class="col-sm-4">
+                            <input type="password" class="form-control" placeholder="">
+                            <span class="iconfont icon-yanjing_yincang_o form-control-feedback"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="col-sm-2 control-label">账号截止时间</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" placeholder="请输入截止时间">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-xiug btn-block btn-confirm">确认</button>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-block btn-link btn-close">关闭</button>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="row empow-user">
+                <div class=" col-md-3">
+                    <div class="user-img ny-pr">
+                        <i class="iconfont icon-2guanbi ny-pa cancellation"></i>
+                        <img src="images/user.png" class="ny-pa" alt="">
+                    </div>
+                    <div class="user-num" id="btn_add">
+                        <p>操作员A</p>
+                        <input type="button" class="btn btn-warning sq" value="未授权"/>
+                    </div>
+                </div>
+                <div class=" col-md-3">
+                    <div class="user-img ny-pr">
+                        <i class="iconfont icon-2guanbi ny-pa cancellation" id="btn_delete"></i>
+                        <img src="images/user.png" class="ny-pa" alt="">
+                    </div>
+                    <div class="user-num">
+                        <p>操作员B</p>
+                        <input type="button" class="btn btn-xiug sq" value="已授权"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 未授权时操作员进行授权 -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">请选择系统</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <div class="col-lg-6 col-md-6">
+                                    <label for="">
+                                        <input type="checkbox" placeholder="智慧农业VR质量溯源质量监测中心">
+                                        智慧农业VR质量溯源质量监测中心
+                                    </label>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6">
+                                    <label for="">
+                                        <input type="checkbox" placeholder="智慧农业生产坏境监测中心">
+                                        智慧农业生产坏境监测中心
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">授权</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
+<!-- <script src="js/jquery-1.11.0.min.js"></script> -->
+<script src="js/jquery-1.12.2.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/time.js"></script>
+<script src="js/confrim.js"></script>
+<script>
+    /* 定时器 */
+    setTime()
+    // 选项卡
+    $('.tab-nav li').click(function () {
+        $(this).addClass("tab-active").siblings().removeClass("tab-active");
+        var i = $(this).index();
+        $(".cont-box").eq(i).show().siblings().hide();
+    })
+
+    // 点击系统说明
+    $("#system_des").click(function () {
+        // $("#myModalLabel").text("请选择系统");
+        $('#desModal').modal();
+    });
+    $("#to_grant").click(function () {
+        $('#toModal').modal();
+    })
+
+    // 添加业务操作员
+    function addSalesman() {
+        $(".add-salesman").hide();
+        $(".sales-form").show();
+        $(".empow-user").hide()
+    }
+
+    $(".btn-close").click(function () {
+        $(".add-salesman").show();
+        $(".sales-form").hide()
+    })
+    $(".btn-confirm").click(function () {
+        $(".empow-user").show();
+        $(".add-salesman").show().css({"text-align": "right", "margin-right": "20px", "margin-bottom": "20px"});
+        $(".sales-form").hide();
+    })
+
+    // 点x取消授权
+    $("#btn_delete").click(function () {
+        //取表格的选中行数据
+        // var arrselections = $("#tb_departments").bootstrapTable('getSelections');
+        // if (arrselections.length <= 0) {
+        //     toastr.warning('请选择有效数据');
+        //     return;
+        // }
+
+        Ewin.confirm({message: "确认要取消授权吗？"}).on(function (e) {
+            if (!e) {
+                return;
+            }
+            $.ajax({
+                type: "post",
+                url: "/api/DepartmentApi/Delete",
+                data: {"": JSON.stringify(arrselections)},
+                success: function (data, status) {
+                    if (status == "success") {
+                        toastr.success('提交数据成功');
+                        $("#tb_departments").bootstrapTable('refresh');
+                    }
+                },
+                error: function () {
+                    toastr.error('Error');
+                },
+                complete: function () {
+
+                }
+
+            });
+        });
+    });
+
+    //未授权按钮的事件
+    $("#btn_add").click(function () {
+        // $("#myModalLabel").text("请选择系统");
+        $('#myModal').modal();
+
+    });
+
+</script>

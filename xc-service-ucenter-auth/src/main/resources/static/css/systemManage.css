@@ -1,0 +1,371 @@
+.row{
+  padding: 0;
+  margin: 0;
+}
+.dropdown-menu>li>a{
+  color: #333;
+}
+.header {
+    height: 120px;
+    color: #fff;
+    background: #26acac;
+    line-height: 120px;
+    vertical-align: middle;
+  }
+  .logos {
+    /* width: 250px; */
+    cursor: pointer;
+  }
+  .logos img {
+    width: 100%;
+    vertical-align: middle;
+  }
+  .logo-title {
+    font-size: 20px;
+    height: 60px;
+    /* width: 45%; */
+    line-height: 60px;
+    margin-top: 30px;
+    padding-left: 30px;
+    cursor: pointer;
+    border-left: 1px solid #fff;
+  }
+  .userinfo{
+    width: 18%;
+    margin-left: 10%;
+  }
+  @media (min-width: 992px){
+    .userinfo{
+      margin-left:4%;
+    }
+  }
+ .icon-yonghu{
+   font-size: 24px;
+ }
+  .userinfo .el-dropdown{
+    cursor: pointer;
+  }
+  .username {
+    margin: 0 5px;
+    color: #fff;
+  }
+  .times {
+      color: #fff;
+      float: right;
+      width: 22%;
+  }
+  @media (min-width: 992px){
+    .times{
+      width: 28%;
+    }
+  }
+  .times i{
+     margin-left: 12px;
+     font-size:24px;color:#fff;margin-right: 10px
+  }
+  
+  /* 中间部分 */
+  .grid-head {
+      border-radius: 6px;
+      height: 90px;
+      margin:30px 0 15px;
+      background:#fff;
+  }
+  .tab-nav{
+    width:100%;
+    height: 90px;
+    justify-content: center;
+    align-items: center;
+  }
+  .tab-nav li{
+    font-size: 18px;
+    margin-right:20px;
+    padding: 15px 25px;
+    cursor: pointer;
+  }
+ 
+  .tab-nav li span{
+    display: inline-block;
+    width: 20px;
+    height: 15px;
+  }
+  .tab-nav li:hover{
+    border-radius: 45px;
+    background: #26acac;
+    color:#fff;
+  }
+  .tab-active{
+    border-radius: 45px;
+    background: #26acac;
+    color:#fff;
+  }
+  .tab-nav li:last-of-type{
+    margin-right: 0;
+  }
+
+
+  .grid-cont{
+      border-radius: 6px;
+      background:#fff;
+      padding:0 10px 95px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+  }
+
+/* 修改注册信息 */
+  .el-col {
+    border-radius: 4px;
+    margin-top: 50px;
+  }
+  .grid-content {
+    border: 2px solid #69cbd4;
+    min-height:250px;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    
+    text-align: center;
+  }
+  .grid-content:hover{
+    box-shadow: 0 0px 15px #d4dedf;
+  }
+  .grid-content img{
+    margin: 15px 0 0;
+  }
+  .grid-content .info{
+    line-height: 35px;
+    font-size: 20px;
+    padding: 0 40px;
+  }
+  .row-bg {
+    padding: 10px 95px;
+    background-color: #f9fafc;
+    color: #333;
+  }
+  .cont-box{
+    display: none;
+  }
+  .grid-contents{
+    display: none;
+  }
+  .open-xt{
+    margin-top: -10px;
+  }
+  .open-xt .btn{
+    padding: 6px 15px;
+    border-radius: 25px;
+  }
+  .open-xt .btn-success {
+    color: #fff;
+    background-color: #42a576;
+    border-color: #42a576;
+    margin-right: 16px;
+  }
+  .open-xt .btn-warning {
+    color: #fff;
+    background-color: #f59000;
+    border-color: #f59000;
+  }
+  .sys-des{
+    text-indent: 30px;
+    font-size: 16px;
+    color: #333;
+    line-height: 30px;
+  }
+
+ 
+
+  /* 业务系统授权 */
+  .form-contents{
+    width: 70%;
+    margin: 0px auto; 
+    padding-top:60px;
+  }
+  @media(min-width: 768px)and(max-width:960px){
+    .form-contents{
+      width: 70%;
+    }
+  }
+  .form-contents .col-lg-8{
+    clear: left;  
+  }
+  .form-contents h2{
+    line-height: 60px;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .form-horizontal{
+    padding: 60px 70px 25px 70px;
+    box-shadow: 0 0 15px #f2f3f5;
+    margin-left:35px;
+    background: #fff;
+  }
+  .control-label{
+    font-size: 16px;
+    color: #272727;
+    font-weight: 100;
+  }
+  .form-control::placeholder{
+    font-size: 14px;
+  }
+  .form-control-feedback{
+    right: 15px;
+  }
+  .form-group{
+    margin-bottom: 25px;
+  }
+  .form-group .icon-yanjing_yincang_o{
+    color:#2ba8aa;
+    font-size: 20px;
+    top: 2px;
+    font-weight: 600;
+  }
+  .form-control{
+    height: 40px;
+  }
+ .control-label{
+   color:#282828;
+ }
+ .yzm{
+   width: 120px;
+   height: 40px;
+   border-radius: 3px;
+   right: -128px;
+   top: 0;
+ }
+ .btn-xiug{
+   width: 55%;
+   margin:20px auto 0;
+   background: #26acad;
+   color: #fff;
+  font-size: 16px;
+  padding: 12px 0;
+ }
+ .btn-link{
+  width: 55%;
+   font-size: 16px;
+   color: #9a9a9a;
+   margin:0 auto;
+ }
+ .btn-link:focus, .btn-link:hover{
+  font-size:16px;
+  color: #9a9a9a;
+  text-decoration: none;
+ }
+
+
+ /* 业务操作员 */
+.add-salesman{
+  text-align: center;
+}
+.salesman{
+  padding-top: 45px;
+}
+.sales-form{
+  width: 95%;
+  margin: 0 auto;
+  display: none;
+}
+.sales-form h2{
+  line-height: 60px;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.form-control{
+  width: 100%!important;
+}
+/* ====================================== */
+.empow-user .col-lg-3{
+  width: 17%;
+  padding:0;
+  margin-right: 15px;
+  margin-left: 20px;
+  margin-top: 35px;
+}
+.user-img{
+  width: 100%;
+  height: 72px;
+  background: url(../images/sq.png) no-repeat;
+  background-size: 100% 100%;
+}
+.icon-2guanbi{
+  right: 15px;
+  top: 5px;
+  color: #fff;
+  font-size: 18px;
+}
+.user-img img{
+  display: block;
+  top: 30px;
+  left:32%;
+  border-radius: 50%;
+}
+.user-num{
+  width: 100%;
+  color: #333;
+  text-align: center;
+  line-height: 40px;
+  padding-top: 30px;
+  padding-bottom: 15px;
+  box-shadow: 0 0 10px #f0f2f3;
+}
+.user-num p{
+  margin-top: 10px;
+}
+.user-num .sq{
+  width: 96px;
+  height: 35px;
+  font-size: 16px;
+  line-height: 35px;
+  margin:0 auto;
+  padding:0;
+}
+
+.empow-user{
+  display: none;
+}
+/* 业务操作员选择系统 */
+.modal-body .form-group{
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.modal-title, .modal-body{
+  color: #333;
+}
+
+
+/* 注册 */
+
+.register-cont{
+  width: 55%;
+  padding-top:0;
+}
+.register-cont .form-horizontal{
+  padding-top: 20px;
+  margin-left: 0;
+}
+.register-cont h1{
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+.res-yzm{
+  height: 40px;
+  background: #fdfafa;
+  border: 1px solid #c0c0c0;
+  color: #333;
+  margin-right: 10px;
+}
+.res-yzm:hover,.res-yzm:focus{
+  background: #fdfafa;
+  border: 1px solid #c0c0c0;
+  color: #333;
+}
+.yzm-text{
+  margin-left: 20px;
+  width: 80%!important;
+}

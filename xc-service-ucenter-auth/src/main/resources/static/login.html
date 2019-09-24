@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录</title>
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/login.css">
+
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/angular.min.js"></script>
+    <script type="text/javascript">
+        var app = angular.module("app", []);
+        //控制层
+        app.controller('controller', function ($scope, service) {
+            $scope.loginRequest = {
+                username: '',
+                password: '',
+                verifycode:''
+            };
+            $scope.loginSys = function (loginRequest) {
+                // loginRequest = JSON.stringify(loginRequest);
+                service.login(loginRequest).success(
+                    function (response) {
+                        console.log(response);
+                        if (response.success = true && response.code == 10000) {
+                            localStorage.setItem("user",JSON.stringify(response.userext));
+                            location.href = "systemManage.html";
+                        } else {
+                            alert(response.message)
+                        }
+                    }
+                )
+            }
+        });
+        //服务层
+        app.service('service', function ($http) {
+            this.login = function (loginRequest) {
+                return $http.post('userlogin', loginRequest);
+            }
+        });
+    </script>
+</head>
+<body ng-app="app" ng-controller="controller" >
+
+<div class="login-bg">
+    <div class="content">
+        <div class="login-head">
+            <div class="logo">
+                <a href="javascript:;">
+                    <img src="images/login_logo.png" alt="">
+                </a>
+            </div>
+            <h1>统一身份认证和单点登录平台</h1>
+        </div>
+        <div class="login-cont">
+            <ul class="tab-nav ny-flex">
+                <li class="tab-active">企业/个人登录</li>
+                <li>其他登录</li>
+            </ul>
+            <div class="nav-list-tab">
+                <form action="" class="cont-box compfrom form-horizontal" style="display: block">
+                    <div class="form-group">
+                        <label for="" class="col-sm-3 control-label">用户名</label>
+                        <div class="col-sm-9">
+                            <input type="text" ng-model="loginRequest.username" class="form-control" id=""
+                                   placeholder="手机号登录">
+                            <i class="iconfont icon-shouji1 form-control-feedback"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="col-sm-3 control-label">密码</label>
+                        <div class="col-sm-9">
+                            <span class="iconfont  icon-yanjing_yincang_o form-control-feedback"></span>
+                            <input type="password" ng-model="loginRequest.password" class="form-control" id=""
+                                   placeholder="输入密码">
+                        </div>
+                    </div>
+
+                    <!--   <div class="form-group">
+                           <label for="" class="col-sm-3 control-label">验证码</label>
+                           <div class="col-sm-5 log-yzm-text">
+                               <input type="text" class="form-control" id="" placeholder="输入验证码">
+                           </div>
+                           <div class="col-lg-4 log-yzm"><input type="button" class="btn btn-primary" value="发送验证码"></div>
+                       </div> -->
+                    <!--                        onclick="top.location='systemManage.html'"-->
+
+                    <div class="form-group">
+                        <div class="col-lg-4 log-primary">
+                            <button type="button" class="btn btn-primary" ng-click="loginSys(loginRequest)" value="登录">
+                                登录
+                            </button>
+                        </div>
+                        <div class="col-lg-2">
+                            <button type="button" class="btn btn-link" onclick="top.location='register.html'"
+                                    value="注册">注册
+                            </button>
+                        </div>
+                        <div class="col-lg-2">
+                            <button type="button" class="btn btn-link" value="找回密码">找回密码</button>
+                        </div>
+                    </div>
+                </form>
+                <form action="" class="cont-box compfrom form-horizontal">
+                    <div class="form-group">
+                        <label for="" class="col-sm-3 control-label">用户名</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="" placeholder="手机号登录">
+                            <i class="iconfont icon-shouji1 form-control-feedback"></i>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="" class="col-sm-3 control-label">密码</label>
+                        <div class="col-sm-9">
+                            <span class="iconfont icon-yanjing_yincang_o form-control-feedback"></span>
+                            <input type="password" class="form-control" id="" placeholder="输入密码">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="col-sm-3 control-label">验证码</label>
+                        <div class="col-sm-5 log-yzm-text">
+                            <input type="text" class="form-control" id="" placeholder="输入验证码">
+                        </div>
+                        <div class="col-lg-4 log-yzm"><input type="button" class="btn btn-primary" value="发送验证码"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-lg-4 log-primary">
+                            <button type="button" class="btn btn-primary" onclick="top.location='systemManage.html'"
+                                    value="登录">登录
+                            </button>
+                        </div>
+                        <div class="col-lg-2">
+                            <button type="button" class="btn btn-link" onclick="top.location='register.html'"
+                                    value="注册">注册
+                            </button>
+                        </div>
+                        <div class="col-lg-2">
+                            <button type="button" class="btn btn-link" value="找回密码">找回密码</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script>
+    $('.tab-nav li').click(function () {
+        $(this).addClass("tab-active").siblings().removeClass("tab-active");
+        var i = $(this).index();
+        $(".cont-box").eq(i).show().siblings().hide();
+    })
+</script>
