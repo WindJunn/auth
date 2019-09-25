@@ -29,6 +29,7 @@
                         if (response.success = true && response.code == 10000) {
                             localStorage.setItem("user",JSON.stringify(response.userext));
                             location.href = "systemManage.html";
+                            // location.reload();
                         } else {
                             alert(response.message)
                         }
@@ -40,6 +41,7 @@
         app.service('service', function ($http) {
             this.login = function (loginRequest) {
                 return $http.post('userlogin', loginRequest);
+            //    {headers : {'token' : getCookie('token')}
             }
         });
     </script>

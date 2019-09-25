@@ -150,8 +150,6 @@ public class AuthService {
                     ExceptionCast.cast(AuthCode.AUTH_CREDENTIAL_ERROR);
                 }
             }
-
-
             return null;
         }
         AuthToken authToken = new AuthToken();

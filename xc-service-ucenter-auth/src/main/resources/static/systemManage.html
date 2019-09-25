@@ -30,8 +30,13 @@
                 }
 
                 service.updatePass($scope.username, password2).success(
-                    function (response) {
-
+                    function (res) {
+                        if(res=='修改成功'){
+                            alert('修改成功');
+                            location.href = "systemManage.html";
+                        }else {
+                            alert('修改失败');
+                        }
                     }
                 )
             }

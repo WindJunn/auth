@@ -18,7 +18,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/userlogin","/userlogout","/userjwt","/login.html","/js/**","/css/**","/font/**","/images/**");
+        web.ignoring().antMatchers("/userlogin","/userlogout","/userjwt","/login.html","/systemManage.html","/js/**","/css/**","/font/**","/images/**");
 
     }
     @Bean
@@ -39,6 +39,15 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .and()
                 .authorizeRequests().anyRequest().authenticated();
+        http.formLogin()
+                .loginPage("/login.html")
+        .loginProcessingUrl("/userlogin").permitAll();
+//                .failureHandler(myAuthenticationFailureHandler);
+
+        http.authorizeRequests()
+                .antMatchers("/login", "/userlogin").permitAll()
+                .anyRequest().authenticated()
+                .and().csrf().disable();
 
     }
 }
